@@ -1,6 +1,5 @@
 .teaser {
     float: left;
-    clear: right;
     display: block;
     padding: 2px 8px!important;
 }
@@ -11,13 +10,20 @@
 
 .teaser.columns1 {
     width: 95%;
+    clear: both;
 }
 .teaser.columns2 {
     width: 47%;
 }
+
 .teaser.columns3 {
     width: 30%;
 }
 .teaser.columns4 {
     width: 22%;
+}
+
+.teaser.columns2.even,
+.teaser.columns4.even {
+    clear: left;
 }
