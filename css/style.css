@@ -1,0 +1,23 @@
+.teaser {
+    float: left;
+    clear: right;
+    display: block;
+    padding: 2px 8px!important;
+}
+
+.teaser img {
+    width: 100%;
+}
+
+.teaser.columns1 {
+    width: 95%;
+}
+.teaser.columns2 {
+    width: 47%;
+}
+.teaser.columns3 {
+    width: 30%;
+}
+.teaser.columns4 {
+    width: 22%;
+}
