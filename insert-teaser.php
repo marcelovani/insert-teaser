@@ -13,8 +13,8 @@ License: GPL
  * Add CSS.
  */
 function teaser_shortcode_css() {
-  $plugindir = get_option('siteurl').'/wp-content/plugins/'.dirname(plugin_basename(__FILE__));
-  wp_enqueue_style( 'style-name', $plugindir . '/css/style.css' );
+  $plugindir = get_option('siteurl') . '/wp-content/plugins/' . dirname(plugin_basename(__FILE__));
+  wp_enqueue_style( 'ts_style', $plugindir . '/css/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'teaser_shortcode_css' );
 
