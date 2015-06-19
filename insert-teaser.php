@@ -51,7 +51,37 @@ function teaser_shortcode( $atts ) {
         <?php if (has_post_thumbnail($post_id)) : ?>
           <div class="thumbnail">
             <a href="<?php print $queried_post->post_name; ?>">
-              <?php print get_the_post_thumbnail($post_id, array($width, $height)); ?>
+              <?php
+                $size = 'i_' . $width . 'x' . $height;
+                add_image_size( $size, $width, $height, 1 );
+
+                require_once('wp-admin/includes/image.php');
+
+                $attached = get_post_thumbnail_id($post_id);
+                $file = get_attached_file($attached);
+                $pathinfo = pathinfo($file);
+
+                $basename = $pathinfo['filename'] . '-' . $width . 'x' . $height . '.' . $pathinfo['extension'];
+                $real_path = $pathinfo['dirname'] . '/' . $basename;
+
+                $alt = '';
+                $upload_dir = wp_upload_dir();
+                if (file_exists($real_path)) {
+                  $src = $upload_dir['url'] . '/' . $basename;
+                }
+                else {
+                  $metadata = wp_generate_attachment_metadata( $attached, $file );
+                  if ($filename = $metadata['sizes'][$size]['file']) {
+                    $src = $upload_dir['url'] . '/' . $filename;
+                  }
+                  else {
+                    $src = $upload_dir['url'] . '/' . $basename;
+                    $alt = 'It was not possible to generate the thumbnail. Make sure you are not trying to upsize the image.';
+                  }
+                }
+
+                echo '<img src="' . $src . '" width="' . $width . '" height="' . $height . '" class="teaser" alt="' . $alt . '" />';
+              ?>
             </a>
           </div>
         <?php endif; ?>
