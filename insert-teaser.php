@@ -73,6 +73,10 @@ function teaser_shortcode( $atts ) {
                   $metadata = wp_generate_attachment_metadata( $attached, $file );
                   if ($filename = $metadata['sizes'][$size]['file']) {
                     $src = $upload_dir['url'] . '/' . $filename;
+                    if ($width != $metadata['sizes'][$size]['width'] || $height != $metadata['sizes'][$size]['height']) {
+                      $src = '';
+                      $alt = 'Invalid image ratio. Correct size: ' . $metadata['sizes'][$size]['width'] . 'x' . $metadata['sizes'][$size]['height'];
+                    }
                   }
                   else {
                     $src = $upload_dir['url'] . '/' . $basename;
