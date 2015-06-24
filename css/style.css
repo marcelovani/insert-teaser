@@ -1,29 +1,30 @@
-.teaser {
+div.teaser {
     float: left;
     display: block;
     padding: 2px 8px!important;
 }
 
-.teaser img {
+div.teaser img {
     /*width: 100%;*/
+    height: auto;
 }
 
-.teaser.columns1 {
+div.teaser.columns1 {
     width: 95%;
     clear: both;
 }
-.teaser.columns2 {
+div.teaser.columns2 {
     width: 47%;
 }
 
-.teaser.columns3 {
+div.teaser.columns3 {
     width: 30%;
 }
-.teaser.columns4 {
+div.teaser.columns4 {
     width: 22%;
 }
 
-.teaser.columns2.even,
-.teaser.columns4.even {
+div.teaser.columns2.even,
+div.teaser.columns4.even {
     clear: left;
 }

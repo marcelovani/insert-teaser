@@ -46,7 +46,7 @@ function teaser_shortcode( $atts ) {
 
   if (!empty($queried_post) && $queried_post->post_status == 'publish') : ?>
 
-    <div id="teaser-<?php print $post_id; ?>" class="teaser columns<?php echo $columns ?> <?php print $count % 2 == 0 ? 'even' : 'odd'; $count++; ?>">
+    <div id="teaser-<?php print $post_id; ?>" class="teaser teaser-<?php echo $count + 1; ?> columns<?php echo $columns ?> <?php print $count % 2 == 0 ? 'even' : 'odd'; $count++; ?>">
       <div class="left">
         <?php if (has_post_thumbnail($post_id)) : ?>
           <div class="thumbnail">
