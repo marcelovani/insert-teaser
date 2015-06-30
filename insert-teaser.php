@@ -62,14 +62,11 @@ function teaser_shortcode( $atts ) {
                 $pathinfo = pathinfo($file);
 
                 $basename = $pathinfo['filename'] . '-' . $width . 'x' . $height . '.' . $pathinfo['extension'];
-                $real_path = $pathinfo['dirname'] . '/' . $basename;
+                $src = $pathinfo['dirname'] . '/' . $basename;
 
                 $alt = '';
-                $upload_dir = wp_upload_dir();
-                if (file_exists($real_path)) {
-                  $src = $upload_dir['url'] . '/' . $basename;
-                }
-                else {
+                if (!file_exists($src)) {
+                  $upload_dir = wp_upload_dir();
                   $metadata = wp_generate_attachment_metadata( $attached, $file );
                   if ($filename = $metadata['sizes'][$size]['file']) {
                     $src = $upload_dir['url'] . '/' . $filename;
@@ -83,7 +80,8 @@ function teaser_shortcode( $atts ) {
                     $alt = 'It was not possible to generate the thumbnail. Make sure you are not trying to upsize the image.';
                   }
                 }
-
+                // Get relative path.
+                $src = str_replace(getcwd(), '', $src);
                 echo '<img src="' . $src . '" width="' . $width . '" height="' . $height . '" class="teaser" alt="' . $alt . '" />';
               ?>
             </a>
