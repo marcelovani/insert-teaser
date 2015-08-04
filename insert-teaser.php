@@ -32,6 +32,7 @@ function teaser_shortcode( $atts ) {
     'post_id'      => '',
     'width'       => '150',
     'height'       => '150',
+    'alt'         => '',
     'columns' => '2',
   ), $atts ) );
 
@@ -64,7 +65,9 @@ function teaser_shortcode( $atts ) {
                 $basename = $pathinfo['filename'] . '-' . $width . 'x' . $height . '.' . $pathinfo['extension'];
                 $src = $pathinfo['dirname'] . '/' . $basename;
 
-                $alt = $basename;
+                if (empty($alt)) {
+                  $alt = $basename;
+                }
                 if (!file_exists($src)) {
                   $upload_dir = wp_upload_dir();
                   $metadata = wp_generate_attachment_metadata( $attached, $file );
