@@ -64,7 +64,7 @@ function teaser_shortcode( $atts ) {
                 $basename = $pathinfo['filename'] . '-' . $width . 'x' . $height . '.' . $pathinfo['extension'];
                 $src = $pathinfo['dirname'] . '/' . $basename;
 
-                $alt = '';
+                $alt = $basename;
                 if (!file_exists($src)) {
                   $upload_dir = wp_upload_dir();
                   $metadata = wp_generate_attachment_metadata( $attached, $file );
