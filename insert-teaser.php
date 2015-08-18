@@ -13,8 +13,8 @@ License: GPL
  * Add CSS.
  */
 function teaser_shortcode_css() {
-  $plugindir = get_option('siteurl') . '/wp-content/plugins/' . dirname(plugin_basename(__FILE__));
-  wp_enqueue_style( 'ts_style', $plugindir . '/css/style.css' );
+  wp_register_style( 'ts-style', plugins_url('css/style.css', __FILE__) );
+  wp_enqueue_style( 'ts-style' );
 }
 add_action( 'wp_enqueue_scripts', 'teaser_shortcode_css' );
 
@@ -56,7 +56,7 @@ function teaser_shortcode( $atts ) {
                 $size = 'i_' . $width . 'x' . $height;
                 add_image_size( $size, $width, $height, 1 );
 
-                require_once('wp-admin/includes/image.php');
+                require_once(ABSPATH . 'wp-admin/includes/image.php');
 
                 $attached = get_post_thumbnail_id($post_id);
                 $file = get_attached_file($attached);
