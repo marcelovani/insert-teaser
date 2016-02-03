@@ -95,7 +95,7 @@ function teaser_shortcode( $atts ) {
       <div class="right">
         <h2 class="title"><a href="<?php print $queried_post->post_name; ?>"><?php echo $queried_post->post_title; ?></a></h2>
 
-        <?php preg_match("/(.*)<!--more-->/", $queried_post->post_content, $matches); ?>
+        <?php preg_match("/([\s\S]*)<!--more-->/", $queried_post->post_content, $matches); ?>
         <?php if (isset($matches[1])) : ?>
           <?php $summary = preg_replace('/\[(.*)\]/', '', $matches[1]); //Remove shortcodes. ?>
           <div class="summary"><?php print strip_tags($summary); ?></div>
